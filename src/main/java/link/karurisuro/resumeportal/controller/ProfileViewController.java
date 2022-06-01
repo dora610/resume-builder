@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class ProfileViewController {
 
-    @GetMapping("/view/{userId}")
+    @GetMapping("/view/{template}/{userId}")
     public String view(
-            @PathVariable String userId,
+            @PathVariable(name = "userId") String userId,
+            @PathVariable(name = "template", required = true) String templateId,
             Model model
     ) {
         model.addAttribute("userId", userId);
-        return "profile";
+        String profileTemplate = "profile-templates/%s/index";
+        return String.format(profileTemplate, templateId);
     }
 }
