@@ -1,21 +1,36 @@
 package link.karurisuro.resumeportal.controller;
 
+import link.karurisuro.resumeportal.models.UserProfile;
+import link.karurisuro.resumeportal.repository.UserProfileRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ProfileViewController {
 
-    @GetMapping("/view/{template}/{userId}")
+    private final String profileTemplate = "profile-templates/%d/index";
+
+    @Autowired
+    private UserProfileRepository userProfileRepository;
+
+    @GetMapping("/view/{userId}")
     public String view(
             @PathVariable(name = "userId") String userId,
-            @PathVariable(name = "template", required = true) String templateId,
+            @RequestParam(name = "themeId", required = false) Integer themeId,
             Model model
     ) {
+        UserProfile userProfile = userProfileRepository
+                .findByUserName(userId)
+                .orElseThrow(() -> new RuntimeException("No such user found"));
+
         model.addAttribute("userId", userId);
-        String profileTemplate = "profile-templates/%s/index";
-        return String.format(profileTemplate, templateId);
+
+        int themeToSelect = themeId == null ? userProfile.getTheme(): themeId;
+
+        return String.format(this.profileTemplate, themeToSelect);
     }
 }
