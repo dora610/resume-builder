@@ -15,8 +15,8 @@ public class HomeController {
         return "It works!";
     }
 
-    @GetMapping("/edit")
-    public String edit() {
-        return "Edit page!";
+    @GetMapping("/auth")
+    public String auth() {
+        return "auth route";
     }
 }

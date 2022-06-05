@@ -32,16 +32,17 @@ public class ProfileViewController {
                 .findByUserName(userId)
                 .orElseThrow(() -> new RuntimeException("No such user found"));
 
-        logger.debug("jobs: {}", userProfile.getJobs());
-        logger.debug("formatted date: {}", userProfile.getUgTo().format(DateTimeFormatter.ISO_DATE));
-
         int themeToSelect = themeId == null ? userProfile.getTheme(): themeId;
 
         model.addAttribute("userId", userId);
         model.addAttribute("userProfile", userProfile);
 
-
-
         return String.format(this.profileTemplate, themeToSelect);
+    }
+
+
+    @GetMapping("/edit")
+    public String edit() {
+        return "Edit page!";
     }
 }
