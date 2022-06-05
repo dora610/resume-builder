@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit resume</title>
+</head>
+<body>
+    <h1 th:text="${userId} + '\'s profile'">Profile</h1>
+    <h3 th:text="${userProfile.summary}"/>
+    <h5 th:text="${userProfile.userName}"/>
+    <form action="#" method="post" th:action="@{/edit}" th:object="${userProfile}">
+        <label for="userName">Name: </label>
+        <input id="userName" type="text" name="name" value="default name" th:value="${userProfile.userName}">
+        <label for="firstName">First Name: </label>
+        <input id="firstName" type="text" name="firstName" th:field="*{firstName}">
+        <label for="lastName">Last Name: </label>
+        <input id="lastName" type="text" name="lastName" th:field="*{lastName}">
+    </form>
+</body>
+</html>
