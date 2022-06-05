@@ -2,6 +2,8 @@ package link.karurisuro.resumeportal.controller;
 
 import link.karurisuro.resumeportal.models.UserProfile;
 import link.karurisuro.resumeportal.repository.UserProfileRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ProfileViewController {
+    private static final Logger logger = LoggerFactory.getLogger(ProfileViewController.class);
 
     private final String profileTemplate = "profile-templates/%d/index";
 
@@ -27,9 +30,14 @@ public class ProfileViewController {
                 .findByUserName(userId)
                 .orElseThrow(() -> new RuntimeException("No such user found"));
 
-        model.addAttribute("userId", userId);
+        logger.debug("jobs: {}", userProfile.getJobs());
 
         int themeToSelect = themeId == null ? userProfile.getTheme(): themeId;
+
+        model.addAttribute("userId", userId);
+        model.addAttribute("userProfile", userProfile);
+
+
 
         return String.format(this.profileTemplate, themeToSelect);
     }

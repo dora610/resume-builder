@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link
+            href="https://fonts.googleapis.com/css?family=Lato:400,300,700"
+            rel="stylesheet"
+            type="text/css"
+    />
+    <link rel="stylesheet" th:href="@{/profile-templates/3/css/style.css}"/>
+    <title
+            th:text="${userProfile.firstName}+ ' ' +${userProfile.lastName} + ' | '+ ${userProfile.designation} + ' | ' + ${userProfile.email} "
+    >
+        Resume template 3
+    </title>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="full-name">
+          <span class="first-name" th:text="${userProfile.firstName}"
+          >John</span
+          >
+            <span class="last-name" th:text="${userProfile.lastName}">Doe</span>
+        </div>
+        <div class="contact-info">
+            <span class="email">Email: </span>
+            <span class="email-val" th:text="${userProfile.email}"
+            >john.doe@gmail.com</span
+            >
+            <span class="separator"></span>
+            <span class="phone">Phone: </span>
+            <span class="phone-val" th:text="${userProfile.phone}"
+            >111-222-3333</span
+            >
+        </div>
+
+        <div class="about">
+          <span class="position" th:text="${userProfile.designation}"
+          >Front-End Developer
+          </span>
+            <span class="desc" th:text="${userProfile.summary}"/>
+        </div>
+    </div>
+
+    <div class="details">
+        <div class="section">
+            <div class="section__title">Experience</div>
+            <div class="section__list">
+                <div class="section__list-item-block" th:each="job : ${userProfile.jobs}">
+                    <div class="name" th:text="${job.company}"></div>
+                    <div class="section__list-item-head">
+                        <div class="addr">San Fr, CA</div>
+                        <div class="duration">
+                            <span th:text="${job.startDate}">Jan 2011</span> -
+                            <span th:text="${job.isCurrentJob} ? 'Present' : ${job.endDate}">Feb 2015</span></div>
+                    </div>
+                    <div class="name1" th:text="${job.designation}"></div>
+                    <ul class="desc" th:each="resp: ${job.responsibilities}">
+                        <li th:text="${resp}">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Consequatur quaerat, facere dolores, enim inventore aperiam ad
+                            assumenda rerum praesentium fugiat sed veniam quos at obcaecati
+                            maiores, atque error dicta minima.
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section__title">Education</div>
+            <div class="section__list">
+                <div class="section__list-item-block">
+                    <div class="name" th:text="${userProfile.ugUniversity}"/>
+                    <div class="section__list-item-head">
+                        <div class="duration"><span th:text="${userProfile.ugTo}"/> - <span
+                                th:text="${userProfile.ugFrom}"/></div>
+                        <div class="addr" th:text="${userProfile.ugCGPA} + '/10.00'"></div>
+                    </div>
+                </div>
+
+                <div class="section__list-item-block">
+                    <div class="name" th:text="${userProfile.higherSecondary}"/>
+                    <div class="section__list-item-head">
+                        <div class="duration"><span th:text="${userProfile.hsTo}"/> - <span
+                                th:text="${userProfile.hsFrom}"/></div>
+                        <div class="addr" th:text="${userProfile.hsPercentage} + ' %'"></div>
+                    </div>
+                </div>
+
+                <div class="section__list-item-block">
+                    <div class="name" th:text="${userProfile.secondary}"/>
+                    <div class="section__list-item-head">
+                        <div class="duration"><span th:text="${userProfile.sTo}"/> - <span
+                                th:text="${userProfile.sFrom}"/></div>
+                        <div class="addr" th:text="${userProfile.sPercentage} + ' %'"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section__title">Projects</div>
+            <div class="section__grid">
+                <div class="section__list-item-block">
+                    <div class="name">DSP</div>
+                    <div class="text">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.Consequatur quaerat, facere dolores,
+                        enim inventore aperiam ad assumenda rerum praesentium fugiat sed veniam quos at obcaecati
+                        maiores, atque error dicta minima.
+                    </div>
+                </div>
+                <div class="section__list-item-block">
+                    <div class="name">DSP</div>
+                    <div class="text">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.Consequatur quaerat, facere dolores,
+                        enim inventore aperiam ad assumenda rerum praesentium fugiat sed veniam quos at obcaecati
+                        maiores, atque error dicta minima grow. <a href="/login">link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section__title">Skills</div>
+            <div class="skills">
+                <div class="left">
+                    <div class="name">Javascript</div>
+                </div>
+                <div class="right">
+                    <input id="ck1" type="checkbox" checked/>
+
+                    <label for="ck1"></label>
+                    <input id="ck2" type="checkbox" checked/>
+
+                    <label for="ck2"></label>
+                    <input id="ck3" type="checkbox"/>
+
+                    <label for="ck3"></label>
+                    <input id="ck4" type="checkbox"/>
+                    <label for="ck4"></label>
+                    <input id="ck5" type="checkbox"/>
+                    <label for="ck5"></label>
+                </div>
+                <div class="left">
+                    <div class="name">CSS</div>
+                </div>
+                <div class="right">
+                    <input id="ck1" type="checkbox" checked/>
+
+                    <label for="ck1"></label>
+                    <input id="ck2" type="checkbox" checked/>
+
+                    <label for="ck2"></label>
+                    <input id="ck3" type="checkbox"/>
+
+                    <label for="ck3"></label>
+                    <input id="ck4" type="checkbox"/>
+                    <label for="ck4"></label>
+                    <input id="ck5" type="checkbox"/>
+                    <label for="ck5"></label>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section__title">Interests</div>
+            <div class="section__list">
+                <div class="section__list-item">Football, programming.</div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
