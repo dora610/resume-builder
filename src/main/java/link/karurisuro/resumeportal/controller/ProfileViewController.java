@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.format.DateTimeFormatter;
+
 @Controller
 public class ProfileViewController {
     private static final Logger logger = LoggerFactory.getLogger(ProfileViewController.class);
@@ -31,6 +33,7 @@ public class ProfileViewController {
                 .orElseThrow(() -> new RuntimeException("No such user found"));
 
         logger.debug("jobs: {}", userProfile.getJobs());
+        logger.debug("formatted date: {}", userProfile.getUgTo().format(DateTimeFormatter.ISO_DATE));
 
         int themeToSelect = themeId == null ? userProfile.getTheme(): themeId;
 

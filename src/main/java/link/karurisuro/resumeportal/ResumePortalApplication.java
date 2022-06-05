@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 
 @SpringBootApplication
 public class ResumePortalApplication {
@@ -41,12 +42,14 @@ public class ResumePortalApplication {
             userProfile.setSFrom(LocalDate.of(2007, 05, 01));
             userProfile.setSTo(LocalDate.of(2009, 05, 01));
             userProfile.setSPercentage(95.0f);
+            userProfile.setSkills(Arrays.asList("JavaScript", "NodeJs", "ReactJs", "NextJs", "Spring Boot", "mySql", "mongoDB", "TailwindCSS"));
             userProfileRepository.save(userProfile);
             Job job1 = new Job("Toto company","Asst. manager", LocalDate.now().minusYears(4L), LocalDate.now(), true, userProfile);
             Job job2 = new Job("Moto company","Trainee", LocalDate.now().minusYears(5L), LocalDate.now().minusYears(7L), false,userProfile);
             job1.setResponsibilities(Arrays.asList("Lorem ipsum dolor sit amet consectetur adipisicing elit.Consequatur quaerat, facere dolores, enim inventore aperiam ad assumenda rerum praesentium fugiat sed veniam quos at obcaecati maiores, atque error dicta minima.", "Lorem ipsum dolor sit amet consectetur adipisicing elit.Consequatur quaerat"));
             job2.setResponsibilities(Arrays.asList("Lorem ipsum dolor sit amet consectetur adipisicing elit", "Lorem ipsum dolor sit amet consectetur"));
             jobRepository.saveAll(Arrays.asList(job1, job2));
+
         };
     }*/
 }

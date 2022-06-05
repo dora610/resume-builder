@@ -44,6 +44,8 @@ public class UserProfile {
     private LocalDate sTo;
     private LocalDate sFrom;
     private Float sPercentage;
+    @ElementCollection(targetClass = String.class)
+    private List<String> skills = new ArrayList<>();
 
     public UserProfile(String userName, int theme, String summary, String firstName, String lastName, String email, String phone, String designation) {
         this.userName = userName;
