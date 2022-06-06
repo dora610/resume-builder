@@ -13,7 +13,7 @@
     <h1 th:text="${userId} + '\'s profile'" class="my-4 text-capitalize text-center fw-bold">Profile</h1>
 
     <form action="#" method="post" th:action="@{/edit}" th:object="${userProfile}">
-        <div class="form-group">
+        <div class="form-group mb-4">
             <label>Select your profile theme</label>
             <select th:field="*{theme}">
                 <option th:each="i : ${#numbers.sequence(1, 4)}" th:value="${i}" th:text="${'Theme ' + i}"></option>
@@ -49,6 +49,30 @@
             <label>Summary</label>
             <textarea class="form-control" th:field="*{summary}"></textarea>
         </div>
+
+        <h3 class="mt-4">Experience</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Company</th>
+                    <th>Designation</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Current Job?</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="job,stat : *{jobs}">
+                    <td><input class="form-control" th:value="*{jobs[__${stat.index}__].company}"></td>
+                    <td><input class="form-control" th:field="*{jobs[__${stat.index}__].designation}"></td>
+                    <td><input type="date" class="form-control" th:field="*{jobs[__${stat.index}__].startDate}"></td>
+                    <td><input type="date" class="form-control" th:field="*{jobs[__${stat.index}__].endDate}"></td>
+                    <td><input type="checkbox" class="form-control" th:field="*{jobs[__${stat.index}__].isCurrentJob}"></td>
+                    <td><a th:href="@{'./delete?type=job&index=' + ${stat.index}}">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
     </form>
 </div>
 </body>
