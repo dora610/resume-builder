@@ -3,6 +3,7 @@ package link.karurisuro.resumeportal.controller;
 import link.karurisuro.resumeportal.models.UserProfile;
 import link.karurisuro.resumeportal.repository.UserProfileRepository;
 import link.karurisuro.resumeportal.services.UserProfileService;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,9 @@ import java.security.Principal;
 import java.time.format.DateTimeFormatter;
 
 @Controller
+@Slf4j
 public class ProfileViewController {
-    private static final Logger logger = LoggerFactory.getLogger(ProfileViewController.class);
+//    private static final Logger logger = LoggerFactory.getLogger(ProfileViewController.class);
 
     private final String profileTemplate = "profile-templates/%d/index";
 
@@ -46,7 +48,7 @@ public class ProfileViewController {
 
     @GetMapping("/edit")
     public String edit(Model model, Principal principal) {
-        logger.debug("principal: {}", principal);
+        log.debug("principal: {}", principal);
         if (principal == null) {
             return "redirect:/auth";
         }

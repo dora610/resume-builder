@@ -12,7 +12,7 @@
 <div class="container">
     <h1 th:text="${userId} + '\'s profile'" class="my-4 text-capitalize text-center fw-bold">Profile</h1>
 
-    <form action="#" method="post" th:action="@{/edit}" th:object="${userProfile}">
+    <form action="#" method="post" th:action="@{/edit}" th:object="${userProfile}" class="py-8 my-8">
         <div class="form-group mb-4">
             <label>Select your profile theme</label>
             <select th:field="*{theme}">
@@ -53,26 +53,76 @@
         <h3 class="mt-4">Experience</h3>
         <table>
             <thead>
-                <tr>
-                    <th>Company</th>
-                    <th>Designation</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Current Job?</th>
-                    <th></th>
-                </tr>
+            <tr>
+                <th>Company</th>
+                <th>Designation</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Current Job?</th>
+                <th></th>
+            </tr>
             </thead>
             <tbody>
-                <tr th:each="job,stat : *{jobs}">
-                    <td><input class="form-control" th:value="*{jobs[__${stat.index}__].company}"></td>
-                    <td><input class="form-control" th:field="*{jobs[__${stat.index}__].designation}"></td>
-                    <td><input type="date" class="form-control" th:field="*{jobs[__${stat.index}__].startDate}"></td>
-                    <td><input type="date" class="form-control" th:field="*{jobs[__${stat.index}__].endDate}"></td>
-                    <td><input type="checkbox" class="form-control" th:field="*{jobs[__${stat.index}__].isCurrentJob}"></td>
-                    <td><a th:href="@{'./delete?type=job&index=' + ${stat.index}}">Delete</a></td>
-                </tr>
+            <tr th:each="job: *{jobs}">
+                <td><input class="form-control text-wrap" th:value="${job.company}"></td>
+                <td><input class="form-control text-wrap" th:value="${job.designation}"></td>
+                <td><input type="date" class="form-control" th:value="${job.startDate}"></td>
+                <td><input type="date" class="form-control" th:value="${job.endDate}"></td>
+                <td><input type="radio" class="form-check-input mx-4 text-center" name="current"
+                           th:checked="${job.isCurrentJob}"></td>
+                <!--                    <td><a th:href="@{'./delete?type=job&index=' + ${jobStat.index}}">Delete</a></td>-->
+                <td>
+                    <button class="btn btn-outline-danger btn-sm">Delete</button>
+                </td>
+            </tr>
             </tbody>
         </table>
+        <p><a href="./edit?add=job">
+            <button class="btn btn-success my-4">Add Job</button>
+        </a></p>
+
+
+        <!--        <h3>Education</h3>-->
+        <!--        <table>-->
+        <!--            <thead>-->
+        <!--            <tr>-->
+        <!--                <th>College/School</th>-->
+        <!--                <th>Qualification</th>-->
+        <!--                <th>Start Date</th>-->
+        <!--                <th>End Date</th>-->
+        <!--                <th>Summary</th>-->
+        <!--                <th></th>-->
+        <!--            </tr>-->
+        <!--            </thead>-->
+        <!--            <tr th:each="education, stat: *{educations}">-->
+        <!--                <td><input class="form-control" th:field="*{educations[__${stat.index}__].college}"></td>-->
+        <!--                <td><input class="form-control" th:field="*{educations[__${stat.index}__].qualification}"></td>-->
+        <!--                <td><input type="date" class="form-control" th:field="*{educations[__${stat.index}__].startDate}"></td>-->
+        <!--                <td><input type="date" class="form-control" th:field="*{educations[__${stat.index}__].endDate}"></td>-->
+        <!--                <td><input class="form-control" th:field="*{educations[__${stat.index}__].summary}"></td>-->
+        <!--                <td><a th:href="@{'./delete?type=education&index=' + ${stat.index}}">Delete</a></td>-->
+        <!--            </tr>-->
+        <!--        </table>-->
+        <!--        <p><a href="./edit?add=education">Add Education</a></p>-->
+
+        <h3 class="mt-4">Skills</h3>
+        <table>
+            <tr th:each="skill, stat: *{skills}">
+                <td><input class="form-control" th:field="*{skills[__${stat.index}__]}"></td>
+                <td><a th:href="@{'./delete?type=skill&index=' + ${stat.index}}">
+                    <button class="btn btn-outline-danger btn-sm">Delete</button>
+                </a></td>
+            </tr>
+        </table>
+        <p><a href="./edit?add=skill">
+            <button class="btn btn-success my-4">Add Skill</button>
+        </a></p>
+
+
+        <div>
+            <input type="submit" value="Submit" class="btn btn-primary my-4 text-center">
+        </div>
+
     </form>
 </div>
 </body>

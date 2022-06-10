@@ -1,6 +1,7 @@
 package link.karurisuro.resumeportal.models;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -20,7 +21,9 @@ public class Job {
     private Long id;
     private String company;
     private String designation;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
     private Boolean isCurrentJob;
     @ElementCollection(targetClass = String.class)
