@@ -44,8 +44,6 @@ public class ProfileViewController {
     }
 
 
-
-
     @GetMapping("/edit")
     public String edit(Model model, Principal principal) {
         log.debug("principal: {}", principal);
@@ -68,5 +66,12 @@ public class ProfileViewController {
         // save profile details
         // redirect to view upon successful save
         return "redirect:/view" + userId;
+    }
+
+    @GetMapping("/delete")
+    public String deleteInfo(@RequestParam String type, @RequestParam String index, Model model) {
+        model.addAttribute("type", type);
+        model.addAttribute("index", index);
+        return "delete-info";
     }
 }

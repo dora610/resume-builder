@@ -1,8 +1,10 @@
 package link.karurisuro.resumeportal;
 
+import link.karurisuro.resumeportal.models.Education;
 import link.karurisuro.resumeportal.models.Job;
 import link.karurisuro.resumeportal.models.User;
 import link.karurisuro.resumeportal.models.UserProfile;
+import link.karurisuro.resumeportal.repository.EducationRepository;
 import link.karurisuro.resumeportal.repository.JobRepository;
 import link.karurisuro.resumeportal.repository.UserProfileRepository;
 import link.karurisuro.resumeportal.repository.UserRepository;
@@ -26,22 +28,11 @@ public class ResumePortalApplication {
     /*@Bean
     public CommandLineRunner initializeDb(UserRepository userRepository,
                                           UserProfileRepository userProfileRepository,
-                                          JobRepository jobRepository) {
+                                          JobRepository jobRepository,
+                                          EducationRepository educationRepository) {
         return (x) -> {
             userRepository.save(new User("binod", "{noop}binod", true, "USER"));
 			UserProfile userProfile = new UserProfile("binod", 3, "It\'s all about Binod", "Binod", "Bonku", "binod@binod.com", "123123", "Asst. Manager");
-            userProfile.setUgUniversity("IITB");
-            userProfile.setUgFrom(LocalDate.of(2007, Month.JUNE, 01));
-            userProfile.setUgTo(LocalDate.of(2011, Month.MAY, 01));
-            userProfile.setUgCGPA(9.00f);
-            userProfile.setHigherSecondary("MBSI");
-            userProfile.setHsFrom(LocalDate.of(2009, 05, 01));
-            userProfile.setHsTo(LocalDate.of(2011, 04, 01));
-            userProfile.setHsPercentage(85.5f);
-            userProfile.setSecondary("MBSI");
-            userProfile.setSFrom(LocalDate.of(2007, 05, 01));
-            userProfile.setSTo(LocalDate.of(2009, 05, 01));
-            userProfile.setSPercentage(95.0f);
             userProfile.setSkills(Arrays.asList("JavaScript", "NodeJs", "ReactJs", "NextJs", "Spring Boot", "mySql", "mongoDB", "TailwindCSS"));
             userProfileRepository.save(userProfile);
             Job job1 = new Job("Toto company","Asst. manager", LocalDate.now().minusYears(4L), LocalDate.now(), true, userProfile);
@@ -49,7 +40,10 @@ public class ResumePortalApplication {
             job1.setResponsibilities(Arrays.asList("Lorem ipsum dolor sit amet consectetur adipisicing elit.Consequatur quaerat, facere dolores, enim inventore aperiam ad assumenda rerum praesentium fugiat sed veniam quos at obcaecati maiores, atque error dicta minima.", "Lorem ipsum dolor sit amet consectetur adipisicing elit.Consequatur quaerat"));
             job2.setResponsibilities(Arrays.asList("Lorem ipsum dolor sit amet consectetur adipisicing elit", "Lorem ipsum dolor sit amet consectetur"));
             jobRepository.saveAll(Arrays.asList(job1, job2));
-
+            Education edu1 =  new Education("B.E", "IITK", 9.12f, LocalDate.of(2007, Month.JUNE, 01), LocalDate.of(2011, Month.MAY, 01), userProfile);
+            Education edu2 =  new Education("Higher Secondary", "MBSI", 92.5f, LocalDate.of(2009, 05, 01), LocalDate.of(2007, 04, 01), userProfile);
+            Education edu3 =  new Education("Secondary", "MBSI", 96.4f, LocalDate.of(2007, 05, 01), LocalDate.of(2009, 05, 01), userProfile);
+            educationRepository.saveAll(Arrays.asList(edu1, edu2, edu3));
         };
     }*/
 }

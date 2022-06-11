@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Delete ' + ${type} ">Delete Info</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Successfully deleted <span th:text="${type}"/> of index: <span th:text="${index}"/></h2>
+
+        <div>
+            <a href="../edit">Back</a>
+        </div>
+    </div>
+</body>
+</html>

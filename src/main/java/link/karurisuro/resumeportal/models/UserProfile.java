@@ -28,22 +28,9 @@ public class UserProfile {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "userProfile")
     private List<Job> jobs = new ArrayList<>();
 
-    private String pgUniversity;
-    private LocalDate pgTo;
-    private LocalDate pgFrom;
-    private Float pgCGPA;
-    private String ugUniversity;
-    private LocalDate ugTo;
-    private LocalDate ugFrom;
-    private Float ugCGPA;
-    private String higherSecondary;
-    private LocalDate hsTo;
-    private LocalDate hsFrom;
-    private Float hsPercentage;
-    private String secondary;
-    private LocalDate sTo;
-    private LocalDate sFrom;
-    private Float sPercentage;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "userProfile")
+    private List<Education> educations = new ArrayList<>();
+
     @ElementCollection(targetClass = String.class)
     private List<String> skills = new ArrayList<>();
 
