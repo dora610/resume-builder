@@ -1,5 +1,6 @@
 package link.karurisuro.resumeportal.services;
 
+import link.karurisuro.resumeportal.models.User;
 import link.karurisuro.resumeportal.models.UserProfile;
 import link.karurisuro.resumeportal.repository.UserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,14 @@ public class UserProfileServiceImpl implements UserProfileService {
                 .findByUserName(userName)
                 .orElseThrow(() -> new RuntimeException("No such user found"));
         return userProfile;
+    }
+
+    public void savedUserProfile(UserProfile userProfile) throws RuntimeException{
+        if (userProfileRepository.existsById(userProfile.getId())) {
+            userProfileRepository.saveAndFlush(userProfile);
+        }else {
+            new RuntimeException("No such user profile found");
+        }
     }
 
     @Override

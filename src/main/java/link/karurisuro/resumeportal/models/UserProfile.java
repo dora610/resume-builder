@@ -12,6 +12,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class UserProfile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

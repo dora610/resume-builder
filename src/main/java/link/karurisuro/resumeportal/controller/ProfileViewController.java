@@ -53,12 +53,17 @@ public class ProfileViewController {
     }
 
     @PostMapping("/edit")
-    public String postEdit(Model userAdded, Principal principal) {
+    public String postEdit(Model userAdded, Principal principal, @ModelAttribute UserProfile userProfile) {
+        log.debug("incoming request: {}",userProfile);
         // get userId
         String userName = principal.getName();
         // save profile details
+        UserProfile savedUserProfile = userProfileService.getUserProfileByUserName(userName);
+        userProfile.setId(savedUserProfile.getId());
+        userProfile.setUserName(userName);
+        userProfileService.savedUserProfile(userProfile);
         // redirect to view upon successful save
-        return "redirect:/view" + userName;
+        return "redirect:/view/" + userName;
     }
 
 }

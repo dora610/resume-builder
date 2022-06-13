@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Education {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
