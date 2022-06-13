@@ -19,26 +19,21 @@
 <div class="container">
     <div class="header">
         <div class="full-name">
-          <span class="first-name" th:text="${userProfile.firstName}"
-          >John</span
-          >
+          <span class="first-name" th:text="${userProfile.firstName}">John</span>
             <span class="last-name" th:text="${userProfile.lastName}">Doe</span>
         </div>
         <div class="contact-info">
             <span class="email">Email: </span>
-            <span class="email-val" th:text="${userProfile.email}"
-            >john.doe@gmail.com</span
-            >
+            <span class="email-val" th:text="${userProfile.email}"/>
             <span class="separator"></span>
             <span class="phone">Phone: </span>
-            <span class="phone-val" th:text="${userProfile.phone}"
-            >111-222-3333</span
-            >
+            <span class="phone-val" th:text="${userProfile.phone}"/>
         </div>
 
+        <hr>
+
         <div class="about">
-          <span class="position" th:text="${userProfile.designation}"
-          >Front-End Developer
+          <span class="position" th:text="${userProfile.designation}"/>
           </span>
             <span class="desc" th:text="${userProfile.summary}"/>
         </div>
@@ -66,7 +61,7 @@
             </div>
         </div>
 
-        <div class="section">
+        <!--<div class="section">
             <div class="section__title">Education</div>
             <div class="section__list">
                 <div class="section__list-item-block">
@@ -100,7 +95,7 @@
                 </div>
 
             </div>
-        </div>
+        </div>-->
 
         <div class="section">
             <div class="section__title">Projects</div>
