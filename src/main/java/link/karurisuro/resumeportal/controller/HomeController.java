@@ -30,7 +30,7 @@ public class HomeController {
             @RequestParam String type,
             @RequestParam Integer index,
             Model model,
-            Principal principal) {
+            Principal principal) throws Exception {
 
         log.debug("index : {}", index);
         String userName = principal.getName();

@@ -19,7 +19,7 @@
 <div class="container">
     <div class="header">
         <div class="full-name">
-          <span class="first-name" th:text="${userProfile.firstName}">John</span>
+            <span class="first-name" th:text="${userProfile.firstName}">John</span>
             <span class="last-name" th:text="${userProfile.lastName}">Doe</span>
         </div>
         <div class="contact-info">
@@ -33,8 +33,8 @@
         <hr>
 
         <div class="about">
-          <span class="position" th:text="${userProfile.designation}"/>
-          </span>
+            <span class="position" th:text="${userProfile.designation}"/>
+            </span>
             <span class="desc" th:text="${userProfile.summary}"/>
         </div>
     </div>
@@ -61,41 +61,20 @@
             </div>
         </div>
 
-        <!--<div class="section">
+        <div class="section">
             <div class="section__title">Education</div>
             <div class="section__list">
-                <div class="section__list-item-block">
-                    <div class="name" th:text="${userProfile.ugUniversity}"/>
+                <div class="section__list-item-block" th:each="edu: ${userProfile.educations}">
+                    <div class="name" th:text="${edu.qualification}"/>
+                    <div class="name1" th:text="${edu.institution}"/>
                     <div class="section__list-item-head">
-                        <div class="duration"><span th:text="${#temporals.format(userProfile.ugTo, 'MMM/yyyy')}"/> -
-                            <span
-                                    th:text="${#temporals.format(userProfile.ugFrom, 'MMM/yyyy')}"/></div>
-                        <div class="addr" th:text="${userProfile.ugCGPA} + '/10.00'"></div>
+                        <div class="duration"><span th:text="${#temporals.format(edu.startDate, 'MMM/yyyy')}"/> -
+                            <span th:text="${#temporals.format(edu.endDate, 'MMM/yyyy')}"/></div>
+                        <div class="addr" th:text="${edu.percentage}"></div>
                     </div>
                 </div>
-
-                <div class="section__list-item-block">
-                    <div class="name" th:text="${userProfile.higherSecondary}"/>
-                    <div class="section__list-item-head">
-                        <div class="duration"><span th:text="${#temporals.format(userProfile.hsTo, 'MMM/yyyy')}"/> -
-                            <span
-                                    th:text="${#temporals.format(userProfile.hsFrom, 'MMM/yyyy')}"/></div>
-                        <div class="addr" th:text="${userProfile.hsPercentage} + ' %'"></div>
-                    </div>
-                </div>
-
-                <div class="section__list-item-block">
-                    <div class="name" th:text="${userProfile.secondary}"/>
-                    <div class="section__list-item-head">
-                        <div class="duration"><span th:text="${#temporals.format(userProfile.sTo, 'MMM/yyyy')}"/> -
-                            <span
-                                    th:text="${#temporals.format(userProfile.sFrom, 'MMM/yyyy')}"/></div>
-                        <div class="addr" th:text="${userProfile.sPercentage} + ' %'"></div>
-                    </div>
-                </div>
-
             </div>
-        </div>-->
+        </div>
 
         <div class="section">
             <div class="section__title">Projects</div>
@@ -111,9 +90,7 @@
                 <div class="section__list-item-block">
                     <div class="name">DSP</div>
                     <div class="text">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.Consequatur quaerat, facere dolores,
-                        enim inventore aperiam ad assumenda rerum praesentium fugiat sed veniam quos at obcaecati
-                        maiores, atque error dicta minima grow. <a href="/login">link</a>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.Consequatur quaera
                     </div>
                 </div>
             </div>
@@ -123,7 +100,7 @@
             <div class="section__title">Skills</div>
             <div class="skills" th:each="skill: ${userProfile.skills}">
                 <div class="left">
-                    <div class="name" th:text="${skill}">Javascript</div>
+                    <div class="name2" th:text="${skill}">Javascript</div>
                 </div>
                 <div class="right">
                     <input id="ck1" type="checkbox" checked/>
@@ -146,6 +123,13 @@
             </div>
         </div>
     </div>
+
 </div>
+<div class="btn-edit">
+    <a href="/edit">
+        <button>Edit profile</button>
+    </a>
+</div>
+
 </body>
 </html>
